@@ -1,86 +1,67 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router";
 import { Box, Menu, ShoppingCart, X } from "lucide-react";
+import { Link, NavLink } from "react-router";
 
-const links = [
-  { label: "Inicio", to: "/" },
-  { label: "Catálogo", to: "/catalogo" },
-  { label: "Personalización", to: "/personalizacion" },
-  { label: "Contacto", to: "/contacto" },
+const routes = [
+  { route: "/", label: "Inicio" },
+  { route: "/Catalogo", label: "Catalogo" },
+  { route: "/personalizacion", label: "Personalizacion" },
+  { route: "/Contacto", label: "Contacto" },
 ];
 
-function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(true);
+const navClass = ({ isActive }: { isActive: boolean }) =>
+  `relative w-fit block px-4 py-3 font-medium
+               transition-colors duration-300
+               ${
+                 isActive
+                   ? "text-white after:absolute after:inset-x-2 after:bottom-0 after:h-[2px] after:rounded-full after:bg-primary after:shadow-[0_0_16px_4px_rgba(239,68,68,0.55)]"
+                   : "text-text-secondary hover:text-white"
+               }`;
 
-  const navClass = ({ isActive }: { isActive: boolean }) =>
-    `rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-      isActive
-        ? "bg-primary text-background"
-        : "text-text-secondary hover:text-primary"
-    }`;
+function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-background/95 backdrop-blur-md">
       <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 md:px-8">
         <Link
+          className="flex cursor-pointer items-center gap-1 text-text-primary duration-300 hover:text-primary"
           to="/"
-          className="flex items-center gap-2"
-          onClick={() => setMenuOpen(false)}
         >
-          <Box className="text-primary" size={30} />
+          <Box size={30} />
           <span className="text-xl font-bold">3Diverso</span>
         </Link>
-
-        <div className="hidden items-center gap-2 md:flex">
-          {links.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.to === "/"}
-              className={navClass}
-            >
-              {link.label}
-            </NavLink>
-          ))}
+        <div>
+          <ul className="hidden sm:flex md:gap-12 lg:gap-24">
+            {routes.map((r) => (
+              <NavLink className={navClass} key={r.label} to={r.route}>
+                {r.label}
+              </NavLink>
+            ))}
+          </ul>
         </div>
-
-        <div className="flex items-center gap-4">
+        <div className="mr-4">
           <button
             type="button"
-            aria-label="Ver carrito"
-            className="cursor-pointer text-text-primary hover:text-primary"
-            disabled
-            title="Disponible próximamente"
+            className="hidden cursor-pointer text-text-primary duration-300 hover:text-primary sm:flex"
+            aria-label="ver carrito"
           >
-            <ShoppingCart size={23} />
+            <ShoppingCart size={26} />
           </button>
-
           <button
             type="button"
-            className="cursor-pointer md:hidden"
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-navigation"
-            onClick={() => setMenuOpen(!menuOpen)}
+            className="cursor-pointer text-text-primary duration-300 focus:text-primary sm:hidden"
+            aria-label="ver menu"
+            onClick={() => setMenuOpen((s) => !s)}
           >
-            {menuOpen ? <X /> : <Menu />}
+            {menuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
       </nav>
-
       {menuOpen && (
-        <div
-          id="mobile-navigation"
-          className="flex flex-col gap-2 border-t border-white/10 bg-background p-4 md:hidden"
-        >
-          {links.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.to === "/"}
-              className={navClass}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
+        <div className="flex flex-col gap-2 border-t border-white/10 bg-background p-4 sm:hidden">
+          {routes.map((i) => (
+            <NavLink key={i.route} className={navClass} to={i.route}>
+              {i.label}
             </NavLink>
           ))}
         </div>
