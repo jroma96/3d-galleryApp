@@ -22,7 +22,7 @@ function HomePage() {
 
   return (
     <div className="flex flex-col">
-      <div className="relative isolate grid md:gap-y-3 gap-y-6 overflow-hidden px-4 py-4 md:min-h-95 xl:min-h-105 md:grid-flow-col md:px-8 md:grid-cols-2 md:grid-rows-3 xl:py-14 xl:px-60">
+      <div className="relative isolate grid overflow-hidden px-4 py-4 md:min-h-95 md:grid-flow-col md:grid-cols-2 md:grid-rows-3 md:gap-y-3 md:px-8 xl:min-h-105 xl:gap-y-6 xl:px-60 xl:py-14">
         <h1 className="relative z-10 col-start-1 font-heading text-4xl font-bold md:text-5xl xl:text-7xl">
           Figuras unicas <br />
           <span className="relative z-10 font-heading text-4xl font-bold text-primary md:text-5xl xl:text-7xl">
