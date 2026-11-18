@@ -11,15 +11,15 @@ function HomePage() {
   const [activeImage, setActiveImage] = useState(0);
   return (
     <div className="flex flex-col">
-      <div className="relative isolate grid gap-y-6 overflow-hidden px-4 py-10 md:min-h-105 md:grid-flow-col md:grid-cols-2 md:grid-rows-3 md:px-60">
-        <h1 className="relative z-10 col-start-1 font-heading text-4xl font-bold md:text-6xl">
+      <div className="relative isolate grid gap-y-6 overflow-hidden px-4 py-2 md:min-h-105 md:grid-flow-col md:grid-cols-2 md:grid-rows-3 md:py-14 xl:px-60">
+        <h1 className="relative z-10 col-start-1 font-heading text-4xl font-bold md:text-7xl">
           Figuras unicas
-          <h1 className="relative z-10 font-heading text-4xl font-bold text-primary md:text-6xl">
+          <h1 className="relative z-10 font-heading text-4xl font-bold text-primary md:text-7xl">
             impresas en 3D
           </h1>
         </h1>
 
-        <p className="relative z-10 col-start-1 text-xl">
+        <p className="relative z-10 col-start-1 text-xl md:text-2xl">
           Coleccionables, decoracion y<br />
           figuras personalizadas,
           <br /> impresas con alta calidad y detalle.
@@ -58,27 +58,27 @@ function HomePage() {
             </button>
           ))}
         </div>
-        <div className="z-10 col-start-1 flex items-center gap-3">
-          <button className="flex gap-x-1 rounded-md border border-primary bg-primary px-4 py-2 text-sm duration-300 hover:border hover:border-text-primary hover:bg-transparent md:text-base">
+        <div className="z-10 col-start-1 flex items-center justify-between gap-3 md:justify-start">
+          <button className="flex items-center gap-x-1 rounded-md border border-primary bg-primary px-4 py-2 text-sm duration-300 hover:border hover:border-text-primary hover:bg-transparent md:text-lg xl:px-8 xl:py-4 xl:text-2xl">
             <ShoppingBag />
             Ver catalogo
           </button>
-          <button className="flex gap-x-1 rounded-md border border-text-primary bg-transparent px-4 py-2 text-sm duration-300 hover:bg-text-primary hover:text-primary md:text-base">
+          <button className="flex items-center gap-x-1 rounded-md border border-text-primary bg-transparent px-4 py-2 text-sm duration-300 hover:bg-text-primary hover:text-primary md:text-lg xl:px-8 xl:py-4 xl:text-2xl">
             <Paintbrush className="hover:text-primary" />
             Perzonaliza la tuya
           </button>
         </div>
       </div>
-      <div className="flex h-34 flex-row items-center justify-between bg-background px-4 md:px-60">
-        <div className="flex items-center justify-between gap-1">
+      <div className="flex h-34 flex-row items-center justify-between bg-background px-4 md:px-8 xl:px-60">
+        <div className="flex flex-col items-center justify-between gap-1 md:flex-row">
           <Boxes size={38} className="text-primary" />
           <h1 className="font-heading text-text-primary">Alta calidad</h1>
         </div>
-        <div className="flex items-center justify-between gap-1">
+        <div className="flex flex-col items-center justify-between gap-1 md:flex-row">
           <Pencil className="text-primary" size={38} />
           <h1 className="font-heading text-text-primary">Personalizacion</h1>
         </div>
-        <div className="flex items-center justify-between gap-1">
+        <div className="flex flex-col items-center justify-between gap-1 md:flex-row">
           <Truck className="text-primary" size={38} />
           <h1 className="font-heading text-text-primary">Envios locales</h1>
         </div>
