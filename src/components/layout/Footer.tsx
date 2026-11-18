@@ -101,11 +101,13 @@ export default function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-center text-xs text-text-secondary md:flex-row md:px-8">
           <p>
-            © {new Date().getFullYear()} LayerLab 3D. Todos los derechos
+            © {new Date().getFullYear()} 3Diverso. Todos los derechos
             reservados.
           </p>
 
-          <p>Hecho con pasión por la impresión 3D.</p>
+          <p>
+            Hecho con pasión por el dinero y el sudor de una biologa mal pagada
+          </p>
         </div>
       </div>
     </footer>
