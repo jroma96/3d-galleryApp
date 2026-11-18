@@ -1,22 +1,33 @@
 import { ShoppingBag, Paintbrush, Boxes, Truck, Pencil } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const heroImages = [
+  { src: "/images/goku-red.png", alt: "Figura coleccionable de Goku" },
+  { src: "/images/dragon-red.png", alt: "Figura impresa en 3D de un dragón" },
+  { src: "/images/grinch-red.png", alt: "Figura impresa en 3D del grinch" },
+];
 
 function HomePage() {
-  const heroImages = [
-    { src: "/images/goku-red.png", alt: "Figura coleccionable de Goku" },
-    { src: "/images/dragon-red.png", alt: "Figura impresa en 3D de un dragón" },
-    { src: "/images/grinch-red.png", alt: "Figura impresa en 3D del grinch" },
-  ];
-
   const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setActiveImage((s) => {
+        if (s < heroImages.length - 1) return s + 1;
+        return 0;
+      });
+    }, 5000);
+    return () => clearTimeout(timerId);
+  }, [activeImage]);
+
   return (
     <div className="flex flex-col">
-      <div className="relative isolate grid gap-y-6 overflow-hidden px-4 py-2 md:min-h-105 md:grid-flow-col md:grid-cols-2 md:grid-rows-3 md:py-14 xl:px-60">
+      <div className="relative isolate grid gap-y-6 overflow-hidden px-4 py-4 md:min-h-105 md:grid-flow-col md:grid-cols-2 md:grid-rows-3 md:py-14 xl:px-60">
         <h1 className="relative z-10 col-start-1 font-heading text-4xl font-bold md:text-7xl">
-          Figuras unicas
-          <h1 className="relative z-10 font-heading text-4xl font-bold text-primary md:text-7xl">
+          Figuras unicas <br />
+          <span className="relative z-10 font-heading text-4xl font-bold text-primary md:text-7xl">
             impresas en 3D
-          </h1>
+          </span>
         </h1>
 
         <p className="relative z-10 col-start-1 text-xl md:text-2xl">
