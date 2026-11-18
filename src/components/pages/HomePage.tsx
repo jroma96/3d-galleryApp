@@ -22,15 +22,15 @@ function HomePage() {
 
   return (
     <div className="flex flex-col">
-      <div className="relative isolate grid gap-y-6 overflow-hidden px-4 py-4 md:min-h-105 md:grid-flow-col md:grid-cols-2 md:grid-rows-3 md:py-14 xl:px-60">
-        <h1 className="relative z-10 col-start-1 font-heading text-4xl font-bold md:text-7xl">
+      <div className="relative isolate grid md:gap-y-3 gap-y-6 overflow-hidden px-4 py-4 md:min-h-95 xl:min-h-105 md:grid-flow-col md:px-8 md:grid-cols-2 md:grid-rows-3 xl:py-14 xl:px-60">
+        <h1 className="relative z-10 col-start-1 font-heading text-4xl font-bold md:text-5xl xl:text-7xl">
           Figuras unicas <br />
-          <span className="relative z-10 font-heading text-4xl font-bold text-primary md:text-7xl">
+          <span className="relative z-10 font-heading text-4xl font-bold text-primary md:text-5xl xl:text-7xl">
             impresas en 3D
           </span>
         </h1>
 
-        <p className="relative z-10 col-start-1 text-xl md:text-2xl">
+        <p className="relative z-10 col-start-1 text-xl xl:text-2xl">
           Coleccionables, decoracion y<br />
           figuras personalizadas,
           <br /> impresas con alta calidad y detalle.
