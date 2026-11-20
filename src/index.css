@@ -27,7 +27,7 @@
   --font-sans: "Inter", sans-serif;
   --font-heading: "Outfit", sans-serif;
 }
-
+@custom-variant search-cancel (&::-webkit-search-cancel-button);
 :root {
   font-family: Inter, system-ui, sans-serif;
   color: var(--color-text-primary);

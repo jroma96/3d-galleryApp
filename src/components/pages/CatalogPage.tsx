@@ -86,14 +86,29 @@ function CatalogPage() {
         </span>
       </div>
       <div className="flex grow flex-col gap-y-2 px-2 py-2 md:grid md:grid-cols-4 md:grid-rows-2 md:gap-x-4 md:gap-y-4 md:p-0 xl:grid-rows-3">
-        <div className="rounded-md bg-surface duration-300 hover:bg-surface-hover md:row-span-2 md:flex md:flex-col md:justify-between md:gap-y-2 md:px-4 md:py-5 xl:row-span-3 xl:justify-start xl:gap-y-6">
+        <div className="rounded-md bg-surface duration-300 md:row-span-2 md:flex md:flex-col md:justify-between md:gap-y-2 md:px-4 md:py-4 xl:row-span-2 xl:justify-start xl:gap-y-3">
+          <div className="flex h-14 items-center justify-between border-b border-white/10 bg-transparent px-1 pb-4">
+            <input
+              className="search-cancel: h-8 grow rounded-md bg-white/10 px-2 search-cancel:invert-50"
+              placeholder="Search"
+              type="search"
+            />
+          </div>
           <h2 className="font-bold md:text-xl xl:text-3xl">Categorias</h2>
           {categories.map((c) => (
-            <div className="duration-300 hover:bg-primary-hover md:flex md:min-h-12 md:items-center md:gap-x-2 md:rounded-md md:px-5">
+            <div className="duration-300 hover:bg-primary-hover md:flex md:min-h-8 md:items-center md:gap-x-2 md:rounded-md md:px-5">
               {c.icon}
-              <span className="xl:text-xl">{c.name}</span>
+              <span className="xl:text-lg">{c.name}</span>
             </div>
           ))}
+        </div>
+        <div className="row-span-1 row-start-3 mb-20 flex flex-col gap-y-4 rounded-md bg-surface px-4 py-2">
+          <h2 className="font-bold md:text-xl xl:text-2xl">Ordenar Por</h2>
+          <select className="h-10 rounded-md bg-surface-hover px-3">
+            <option>Recientes</option>
+            <option>Precio ascendente</option>
+            <option>Precio descendente</option>
+          </select>
         </div>
         {catalogImages.map((image, index) => (
           <div
