@@ -1,5 +1,6 @@
 import { ShoppingBag, Paintbrush, Boxes, Truck, Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 const heroImages = [
   { src: "/images/goku-red.png", alt: "Figura coleccionable de Goku" },
@@ -69,10 +70,12 @@ function HomePage() {
           ))}
         </div>
         <div className="z-10 col-start-1 mt-2 flex items-center justify-between gap-3 md:mt-0 md:justify-start">
-          <button className="flex items-center gap-x-1 rounded-md border border-primary bg-primary px-4 py-2 text-sm duration-300 hover:border hover:border-text-primary hover:bg-transparent md:text-lg xl:px-8 xl:py-4 xl:text-2xl">
-            <ShoppingBag />
-            Ver catalogo
-          </button>
+          <Link to={"/Catalogo"}>
+            <button className="flex items-center gap-x-1 rounded-md border border-primary bg-primary px-4 py-2 text-sm duration-300 hover:border hover:border-text-primary hover:bg-transparent md:text-lg xl:px-8 xl:py-4 xl:text-2xl">
+              <ShoppingBag />
+              Ver catalogo
+            </button>
+          </Link>
           <button className="flex items-center gap-x-1 rounded-md border border-text-primary bg-transparent px-4 py-2 text-sm duration-300 hover:bg-text-primary hover:text-primary md:text-lg xl:px-8 xl:py-4 xl:text-2xl">
             <Paintbrush className="hover:text-primary" />
             Perzonaliza la tuya

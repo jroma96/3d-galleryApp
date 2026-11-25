@@ -1,79 +1,89 @@
-import {
-  ShoppingCart,
-  Video,
-  House,
-  Panda,
-  Joystick,
-  PlantPot,
-  Brush,
-  OctagonX,
-} from "lucide-react";
+import { ShoppingCart, OctagonX } from "lucide-react";
 import { useState, type ChangeEvent } from "react";
+import { Link } from "react-router";
 
 const catalogImages = [
   {
     src: "/images/fox-3D.png",
     alt: "Figura de un zorro 3D",
     name: "Fox",
-    price: "Q 95.00",
+    fecha: new Date(),
+    price: 80.5,
+    category: "Videojuegos",
   },
   {
     src: "/images/dragon-3D.png",
     alt: "Figura de un dragon 3D",
     name: "Dragon",
-    price: "Q 95.00",
+    fecha: new Date(),
+    price: 75.0,
+    category: "Anime",
   },
   {
     src: "/images/knight-3D.png",
     alt: "FIgura de un caballero 3D",
     name: "Knight",
-    price: "Q 95.00",
+    fecha: new Date("2026/11/01"),
+    price: 80.0,
+    category: "Peliculas",
   },
   {
     src: "/images/cat-3D.png",
     alt: "Figura de un gato 3D",
     name: "Cat",
-    price: "Q 95.00",
+    fecha: new Date("2026/11/02"),
+    price: 90.0,
+    category: "Originales",
   },
   {
     src: "/images/maceta-3D.png",
     alt: "FIgura de un caballero 3D",
     name: "Maceta",
-    price: "Q 95.00",
+    fecha: new Date("2026/11/10"),
+    price: 95.0,
+    category: "Decoracion",
   },
   {
     src: "/images/jarron-3D.png",
     alt: "Figura de un gato 3D",
     name: "Jarron",
-    price: "Q 95.00",
+    fecha: new Date("2026/11/11"),
+    price: 85.0,
+    category: "Decoracion",
   },
   {
     src: "/images/cat-3D.png",
     alt: "Figura de un gato 3D",
     name: "Cat",
-    price: "Q 95.00",
+    fecha: new Date("2026/11/04"),
+    price: 85.0,
+    category: "Originales",
   },
   {
     src: "/images/maceta-3D.png",
     alt: "FIgura de un caballero 3D",
     name: "Maceta",
-    price: "Q 95.00",
+    fecha: new Date("2026/11/07"),
+    price: 95.0,
+    category: "Decoracion",
   },
   {
     src: "/images/jarron-3D.png",
     alt: "Figura de un gato 3D",
     name: "Jarron",
-    price: "Q 95.00",
+    fecha: new Date("2026/11/13"),
+    price: 100.0,
+    category: "Decoracion",
   },
 ];
 
 const categories = [
-  { name: "Todas", icon: <House /> },
-  { name: "Anime", icon: <Panda /> },
-  { name: "Videojuegos", icon: <Joystick /> },
-  { name: "Peliculas", icon: <Video /> },
-  { name: "Decoracion", icon: <PlantPot /> },
-  { name: "Originales", icon: <Brush /> },
+  "Todas",
+  "Anime",
+  "Videojuegos",
+  "Peliculas",
+  "Decoracion",
+  "Originales",
 ];
 
 function CatalogPage() {
@@ -81,13 +91,34 @@ function CatalogPage() {
   const [query, setQuery] = useState("");
   const [gallery, setGallery] = useState(catalogImages);
 
+  function handleSort(e: ChangeEvent<HTMLSelectElement>) {
+    if (e.target.value === "Recientes") {
+      setGallery((g) =>
+        g.toSorted((a, b) => Number(b.fecha) - Number(a.fecha)),
+      );
+    }
+    if (e.target.value === "Precio ascendente") {
+      setGallery((g) => g.toSorted((a, b) => a.price - b.price));
+    }
+    if (e.target.value === "Precio descendente") {
+      setGallery((g) => g.toSorted((a, b) => b.price - a.price));
+    }
+  }
+
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     setQuery(e.target.value);
-    setGallery(
-      catalogImages.filter((i) =>
-        i.name.toLowerCase().includes(e.target.value),
-      ),
+    setGallery((g) =>
+      g.filter((i) => i.name.toLowerCase().includes(e.target.value)),
     );
+  }
+
+  function handleFilter(c: string) {
+    setFilter((name) => (name === c ? "" : c));
+    if (c === "Todas") {
+      setGallery(catalogImages);
+    } else {
+      setGallery((g) => g.filter((i) => i.category === c));
+    }
   }
 
   console.log(filter);
@@ -112,12 +143,10 @@ function CatalogPage() {
           <div className="flex flex-wrap items-center justify-around gap-3">
             {categories.map((c) => (
               <div
-                onClick={() =>
-                  setFilter((name) => (name === c.name ? "" : c.name))
-                }
-                className={`${filter === c.name ? "bg-primary-hover" : "bg-surface-hover"} flex min-h-6 min-w-22 items-center justify-around rounded-full duration-300 hover:bg-primary-hover`}
+                onClick={() => handleFilter(c)}
+                className={`${filter === c ? "bg-primary-hover" : "bg-surface-hover"} flex min-h-6 min-w-22 items-center justify-around rounded-full duration-300 hover:bg-primary-hover`}
               >
-                <span className="text-xs xl:text-lg">{c.name}</span>
+                <span className="text-xs xl:text-lg">{c}</span>
               </div>
             ))}
           </div>
@@ -138,47 +167,50 @@ function CatalogPage() {
             </h2>
             {categories.map((c) => (
               <div
-                onClick={() =>
-                  setFilter((name) => (name === c.name ? "" : c.name))
-                }
-                className={`${filter === c.name ? "bg-primary-hover" : "bg-surface-hover"} col-span-1 flex max-h-8 min-h-8 items-center justify-around duration-300 hover:bg-primary-hover md:col-span-1 md:max-h-3 md:max-w-32 md:gap-x-1 md:gap-y-2 md:rounded-full md:px-1 xl:col-span-2 xl:min-h-8 xl:px-2`}
+                onClick={() => handleFilter(c)}
+                className={`${filter === c ? "bg-primary-hover" : "bg-surface-hover"} col-span-1 flex max-h-8 min-h-8 items-center justify-around duration-300 hover:bg-primary-hover md:col-span-1 md:max-h-3 md:max-w-32 md:gap-x-1 md:gap-y-2 md:rounded-full md:px-1 xl:col-span-2 xl:min-h-8 xl:px-2`}
               >
-                <span className="text-xs xl:text-lg">{c.name}</span>
+                <span className="text-xs xl:text-lg">{c}</span>
               </div>
             ))}
           </div>
         </div>
         <div className="hidden gap-y-2 rounded-md bg-surface px-4 py-2 md:row-span-1 md:row-start-2 md:mb-20 md:flex md:flex-col md:gap-y-4 xl:row-start-3">
           <h2 className="font-bold md:text-xl xl:text-2xl">Ordenar Por</h2>
-          <select className="h-10 rounded-md bg-surface-hover px-3">
+          <select
+            onChange={handleSort}
+            className="h-10 rounded-md bg-surface-hover px-3"
+          >
             <option>Recientes</option>
             <option>Precio ascendente</option>
             <option>Precio descendente</option>
           </select>
         </div>
         {gallery.length < 1 ? (
-          <div className="flex grow items-center justify-start xl:col-span-3 xl:row-span-3 xl:gap-x-4 xl:px-8 xl:pb-24 xl:text-5xl">
+          <div className="col-span-2 flex grow items-center justify-start px-7 text-xl md:col-span-3 md:row-span-2 md:pb-24 md:pl-30 md:text-3xl xl:row-span-3 xl:gap-x-4 xl:px-8 xl:text-5xl">
             No se encontraron resultados{" "}
             <OctagonX className="pt-3 text-primary-hover" size={60} />
           </div>
         ) : (
           gallery.map((image, index) => (
-            <div
-              className={`flex flex-col rounded-md bg-surface duration-300 hover:bg-surface-hover ${index > 5 ? "hidden xl:block" : ""}`}
-            >
-              <img
-                className="h-32 rounded-t-md object-cover object-top md:h-34 md:w-72 md:object-cover"
-                src={image.src}
-                alt={image.alt}
-              />
-              <div className="flex items-center justify-between px-4 py-1">
-                <div className="flex flex-col">
-                  <h2 className="font-bold">{image.name}</h2>
-                  <span>{image.price}</span>
+            <Link to={`/Catalogo/${image.name}`}>
+              <div
+                className={`flex flex-col rounded-md bg-surface duration-300 hover:bg-surface-hover ${index > 5 ? "hidden xl:block" : ""}`}
+              >
+                <img
+                  className="h-32 rounded-t-md object-cover object-top md:h-34 md:w-72 md:object-cover"
+                  src={image.src}
+                  alt={image.alt}
+                />
+                <div className="flex items-center justify-between px-4 py-1">
+                  <div className="flex flex-col">
+                    <h2 className="font-bold">{image.name}</h2>
+                    <span>Q {image.price}</span>
+                  </div>
+                  <ShoppingCart className="min-h-8 min-w-8 rounded-md bg-primary px-1.5 py-1.5 duration-300 hover:bg-text-primary hover:text-primary-hover" />
                 </div>
-                <ShoppingCart className="min-h-8 min-w-8 rounded-md bg-primary px-1.5 py-1.5 duration-300 hover:bg-text-primary hover:text-primary-hover" />
               </div>
-            </div>
+            </Link>
           ))
         )}
       </div>
