@@ -1,5 +1,5 @@
 import { ShoppingCart, OctagonX } from "lucide-react";
-import { useState, type ChangeEvent } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import { Link } from "react-router";
 
 const catalogImages = [
@@ -107,9 +107,13 @@ function CatalogPage() {
 
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     setQuery(e.target.value);
-    setGallery((g) =>
-      g.filter((i) => i.name.toLowerCase().includes(e.target.value)),
-    );
+    if (e.target.value === "") {
+      setGallery(catalogImages);
+    } else {
+      setGallery((g) =>
+        g.filter((i) => i.name.toLowerCase().includes(e.target.value)),
+      );
+    }
   }
 
   function handleFilter(c: string) {
