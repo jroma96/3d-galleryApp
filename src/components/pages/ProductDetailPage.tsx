@@ -87,15 +87,15 @@ function ProductDetailPage() {
           src={catalogImages.find((i) => i.name === params.slug)?.src}
         />
       </div>
-      <div className="md:flex md:flex-col md:gap-2 md:px-10 md:py-6">
-        <h1 className="font-bold md:text-6xl">{params.slug}</h1>
-        <span className="font-semibold text-primary md:text-3xl">
+      <div className="flex min-h-88 flex-col px-5 py-3 md:gap-2 md:px-10 md:py-6">
+        <h1 className="text-xl font-bold md:text-6xl">{params.slug}</h1>
+        <span className="text-lg font-semibold text-primary md:text-3xl">
           {catalogImages.find((i) => i.name === params.slug)?.alt}
         </span>
-        <p className="md:text-lg">
+        <p className="text-base md:text-lg">
           {catalogImages.find((i) => i.name === params.slug)?.details}
         </p>
-        <div className="md:flex md:flex-col md:gap-6 md:py-8">
+        <div className="flex flex-col gap-2 py-6 md:gap-6 md:py-8">
           <div className="flex gap-2">
             <Hammer />
             <span>Alta resistencia</span>
@@ -110,7 +110,7 @@ function ProductDetailPage() {
           </div>
         </div>
         <div className="md:flex md:items-center">
-          <button className="items-center justify-around gap-x-1 rounded-md border border-primary bg-primary px-4 py-2 text-sm duration-300 hover:border hover:border-text-primary hover:bg-transparent md:flex md:min-h-14 md:max-w-58 md:text-lg xl:px-8 xl:py-4 xl:text-2xl">
+          <button className="flex items-center justify-around gap-x-1 rounded-md border border-primary bg-primary px-4 py-2 text-sm duration-300 hover:border hover:border-text-primary hover:bg-transparent md:flex md:min-h-14 md:max-w-58 md:text-lg xl:px-8 xl:py-4 xl:text-2xl">
             <ShoppingBag />
             Agregar al Carrito
           </button>
