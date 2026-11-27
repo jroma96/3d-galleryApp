@@ -40,13 +40,15 @@ function Navbar() {
           </ul>
         </div>
         <div className="mr-4">
-          <button
-            type="button"
-            className="hidden cursor-pointer text-text-primary duration-300 hover:text-primary sm:flex"
-            aria-label="ver carrito"
-          >
-            <ShoppingCart size={26} />
-          </button>
+          <Link to={"/Cart"}>
+            <button
+              type="button"
+              className="hidden cursor-pointer text-text-primary duration-300 hover:text-primary sm:flex"
+              aria-label="ver carrito"
+            >
+              <ShoppingCart size={26} />
+            </button>
+          </Link>
           <button
             type="button"
             className="cursor-pointer text-text-primary duration-300 focus:text-primary sm:hidden"

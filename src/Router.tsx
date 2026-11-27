@@ -6,6 +6,7 @@ import CatalogPage from "./components/pages/CatalogPage";
 import ProductDetailPage from "./components/pages/ProductDetailPage";
 import CustomizationPage from "./components/pages/CustomizationPage";
 import ContactPage from "./components/pages/ContactPage";
+import Cart from "./components/pages/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
         element: <CustomizationPage />,
       },
       { path: "contacto", element: <ContactPage /> },
+      { path: "cart", element: <Cart /> },
       {
         path: "*",
         element: <h1>Página no encontrada</h1>,

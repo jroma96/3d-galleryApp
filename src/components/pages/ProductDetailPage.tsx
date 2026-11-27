@@ -80,14 +80,14 @@ const catalogImages = [
 function ProductDetailPage() {
   const params = useParams();
   return (
-    <div className="justify-around md:grid md:max-h-130 md:grid-cols-2 md:gap-x-4">
+    <div className="justify-around md:grid md:max-h-116 md:min-h-116 md:grid-cols-2 md:gap-x-4">
       <div className="flex justify-end">
         <img
           className="object-fill"
           src={catalogImages.find((i) => i.name === params.slug)?.src}
         />
       </div>
-      <div className="flex min-h-88 flex-col px-5 py-3 md:gap-2 md:px-10 md:py-6">
+      <div className="flex min-h-88 flex-col px-5 py-3 md:gap-2 md:px-10 md:py-4">
         <h1 className="text-xl font-bold md:text-6xl">{params.slug}</h1>
         <span className="text-lg font-semibold text-primary md:text-3xl">
           {catalogImages.find((i) => i.name === params.slug)?.alt}
